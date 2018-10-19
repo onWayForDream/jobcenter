@@ -1,0 +1,24 @@
+html{font-family:"微软雅黑",Arial,sans-serif}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,input,button,textarea,p,th,td{padding:0;margin:0;font-family:Microsoft YaHei,sans-serif,Arial}
+table{border-collapse:collapse;border-spacing:0; }
+fieldset,img{border:0}
+a{text-decoration:none;color:#000;outline:none}
+li{list-style:none}
+caption,th{text-align:left}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+input,button {margin: 0;vertical-align: middle;outline: none;}
+i,em {font-style: normal;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
+input,button,textarea,select{*font-size:100%}
+a{-webkit-transition:all 0.5s linear;-moz-transition:all 0.5s linear;-ms-transition:all 0.5s linear;-o-transition:all 0.5s linear}
+a{text-decoration: none;-webkit-tap-highlight-color:transparent;}
+a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+::before,
+::after{
+    padding: 0;
+    margin: 0;
+    -webkit-tap-highlight-color:transparent;/*清除点击高亮效果*/
+}

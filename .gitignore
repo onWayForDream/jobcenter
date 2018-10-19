@@ -1,23 +1,42 @@
-# Compiled class file
-*.class
+# Git
+*.rej
+*.orig
 
-# Log file
+# Maven
+target
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea
+
+# Eclipse
+.classpath
+.project
+.settings
+
+#vim
+*.swp
+
+#Node.js
+node
+node_modules
+npm-debug.log
+
+#Oxygen
+__MACOSX
+
+#OSX
+.DS_Store
+
+.gitreview
+
+# maven shade
+dependency-reduced-pom.xml
+
+container/runInfo
+container/var
+*/datacollector-ui/package-lock.json
+# log files
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*

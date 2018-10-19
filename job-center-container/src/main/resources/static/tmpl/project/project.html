@@ -1,0 +1,94 @@
+<style>
+	.errormsg {
+		height: 20px;
+		line-height: 20px;
+		text-align: right;
+		font-size: 12px;
+		color: #E26060;
+		padding: 0 14px;
+	}
+</style>
+<div class="project-box">
+	<div class="path">项目管理</div>
+	<div class="project-query">
+		<div class="query-up"><span>查询条件</span></div>
+		<div class="query-down">
+			<div class="query-name">
+				<input class="query-input" type="text" ng-model="queryName" placeholder="请输入项目名称..." />
+				<button class="search" ng-click="getProgects(1)"><span class="fa fa-search"></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="query-up"><span>项目列表</span></div>
+		<button class="btn addbtn" ng-click="isAddProShow = true"><span class="fa fa-plus"></span>新建项目</button>
+		<table class="project-list">
+			<thead>
+				<tr>
+					<th>项目名称</th>
+					<th>创建时间</th>
+					<th></th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="project in projects">
+					<td>{{project.name}}</td>
+					<td>{{project.createTime}}</td>
+					<td class="jump">
+						<a ui-sref='app.libs({projectId:project.id,projectName:project.name})'>进入库</a>
+						<a ui-sref='app.jobs({projectId:project.id,projectName:project.name})'>进入JOB</a>
+					</td>
+					<td>
+						<a class="edit fa fa-pencil" title="编辑" ng-click="editProject($event, project.id, project.name)"></a>
+						<a class="delete fa fa-trash-o" title="删除 " ng-click="deleteProject($event, project.id)"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 分页 控件-->
+		<my-pager pager="pager"></my-pager>
+		<!--无数据-->
+		<div class="nodata" ng-show="isPagination">
+			<img src="./statics/img/noproject.png" alt="无数据" />
+		</div>
+	</div>
+	<!--新增项目-->
+	<div class="shadow" ng-show="isAddProShow"></div>
+	<div class="newadd" ng-show="isAddProShow">
+		<div class="addtitle">
+			<span class="title">新增项目</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isAddProShow = false"></span>
+		</div>
+		<div class="itemname">项目名称</div>
+		<input type="text" class="iteminput" required ng-model="addProjectss.name" placeholder="只允许包含汉字、字母、数字及下划线且不超过20个字符" />
+		<div class="errormsg" ng-show="errorMsg">{{errorMsg}}</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="addProject()">确定</button>
+			<button class="btn btnca" ng-click="isAddProShow = false">取消</button>
+		</div>
+	</div>
+	<!--编辑项目-->
+	<div class="shadow" ng-show="isEditProShow"></div>
+	<div class="newadd" ng-show="isEditProShow">
+		<div class="addtitle">
+			<span class="title">编辑项目</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isEditProShow = false"></span>
+		</div>
+		<div class="itemname">项目名称</div>
+		<input type="text" class="iteminput" ng-model="putProjectss.name" placeholder="只允许包含汉字、字母、数字及下划线且不超过20个字符" />
+		<div class="submit">
+			<button class="btn btnok" ng-click="submitPutProject()">确定</button>
+			<button class="btn btnca" ng-click="isEditProShow = false">取消</button>
+		</div>
+	</div>
+	<!--删除项目-->
+	<div class="shadow" ng-show="isDelProShow"></div>
+	<div class="delproject" ng-show="isDelProShow">
+		<div class="deltext">确认删除本项目?</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="confirmDel()">确认</button>
+			<button class="btn btnca" ng-click="isDelProShow = false">取消</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+spring.profiles.active: dev
+
+# database
+spring.datasource.driver-class-name: com.mysql.jdbc.Driver
+
+# Max file size.
+spring.servlet.multipart.max-file-size: 100MB
+# Max request size.
+spring.servlet.multipart.max-request-size: 100MB
+
+---
+spring.profiles: mabb
+
+server.port: 8080
+
+spring.profiles.include:
+  - mabb-db
+  - mabb-common
+
+---
+spring.profiles: botao
+
+server.port: 80
+
+spring.profiles.include:
+  - botao-db
+  - botao-common
+

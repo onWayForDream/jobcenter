@@ -1,0 +1,55 @@
+<style>
+	.welcome-area {
+		float: right;
+		margin: 20px;
+		font-family: PingFangSC-Regular;
+	}
+
+	.welcome-area span{
+		font-size: 12px;
+	}
+
+	.logout {
+		background: #BBB;
+		border-radius: 8px;
+		padding: 4px 15px;
+		margin-left: 4px;
+		cursor:pointer;
+		color:white;
+	}
+	.logout:hover{
+	    background:#999;
+	}
+</style>
+
+<header class="header">
+	<img class="logo" src="statics/img/logo.png" alt="规则引擎" />
+	<span class="text">规则引擎</span>
+	<div class="welcome-area">
+		<span ng-show="username" style="color:#999;">欢迎您，{{username}}</span>
+		<span class="logout" ng-click="logout()"
+            <i class="fa fa-power-off"></i>
+            退出
+        </span>
+	</div>
+</header>
+<div class="left-content">
+	<ul class="tab-ul">
+		<li>
+			<a ui-sref='app.project' ng-class="{active: 'project' == currentType}" ng-click="changeTab('project')">
+				<span class="left-icon fa fa-book"></span>任务调度管理</a>
+		</li>
+		<li>
+			<a ui-sref='app.dashlist' ng-class="{active: 'dashlist' == currentType}" ng-click="changeTab('dashlist')">
+				<span class="left-icon fa fa-tachometer"></span>仪表盘管理</a>
+		</li>
+	</ul>
+</div>
+<div class="right-content">
+	<div ng-show="loading" class="loading">
+		<div class="object" id="object_one"></div>
+		<div class="object" id="object_two"></div>
+		<div class="object" id="object_three"></div>
+	</div>
+	<ui-view></ui-view>
+</div>

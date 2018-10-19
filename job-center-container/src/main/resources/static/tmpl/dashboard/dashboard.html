@@ -1,0 +1,400 @@
+<style type="text/css">
+.project-box{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	-webkit-box-orient:vertical;
+	-moz-box-orient: vertical;
+}
+.newadd{
+	width: 825px;
+	top: 25px;
+}
+.save-success-tip{
+	transition: all linear 0.3s;
+	opacity: 1;
+	position: absolute;
+	top: 65px;
+	right: 245px;
+}
+.save-success-tip.ng-hide{
+	opacity: 0;
+}
+.save-btn{
+	position: absolute;
+	top: 45px;
+	right: 0;
+}
+.save-btn .save-view{
+	width: 82px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #2AB5E6;
+	border: none;
+	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.11);
+	border-radius: 30px;
+	font-size: 14px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.save-btn .save-view:first-child{
+	margin-right: 10px;
+}
+.save-btn .save-view span.fa{
+	margin-right: 6px;
+}
+.dash-box{
+	width: 100%;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	margin-bottom: 15px;
+}
+.dash-box .left-cont{
+	width: 200px;
+	padding: 15px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.11);
+	border-radius: 4px;
+	overflow: hidden;
+}
+.dash-box .left-cont .ul-tab{
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	border: 1px solid #2AB5E6;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.dash-box .left-cont .ul-tab li{
+	float: left;
+	width: 33.3%;
+	height: 30px;
+	font-size: 12px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.dash-box .left-cont .ul-tab li.active{
+	background: #2AB5E6;
+	border-radius: 4px;
+	color: #FFFFFF;
+}
+.dash-box .left-cont .img-box{
+	width: 100%;
+	overflow: hidden;
+}
+.dash-box .left-cont .img-box .img{
+	float: left;
+	width: 96px;
+	height: 96px;
+	margin-top: 12px;
+}
+.dash-box .left-cont .img-box .img:nth-child(odd){
+	float: left;
+}
+.dash-box .left-cont .img-box .img:nth-child(even){
+	float: right;
+}
+
+.dash-box .canvas-cont{
+	margin: 0 15px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	-webkit-box-flex: 1;
+	-moz-box-flex: 1;
+	background: #FFFFFF;
+	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.11);
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.dash-box .right-cont{
+	width: 200px;
+	padding: 15px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.11);
+	border-radius: 4px;
+	overflow: hidden;
+	overflow-y: auto;
+	scrollbar:
+}
+.dash-box .right-cont::-webkit-scrollbar{
+	width: 3px;
+	height: 1px;
+}
+.dash-box .right-cont::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: #203453;
+}
+
+.dash-box .right-cont::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	background: #EDEDED;
+}
+
+.dash-box .right-cont .ul-tab{
+	width: 100%;
+	height: 32px;
+	line-height: 32px;
+	border: 1px solid #2AB5E6;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+.dash-box .right-cont .ul-tab li{
+	width: 50%;
+	height: 30px;
+	font-size: 12px;
+	overflow: hidden;
+	cursor: pointer;
+}
+.dash-box .right-cont .ul-tab li:first-child{
+	float: left;
+	margin-left: -1px;
+}
+.dash-box .right-cont .ul-tab li:last-child{
+	float: right;
+	margin-right: -1px;
+}
+.dash-box .right-cont .ul-tab li.active{
+	background: #2AB5E6;
+	border-radius: 4px;
+	color: #FFFFFF;
+}
+.dash-box .right-cont .text-box{
+	width: 100%;
+	overflow: hidden;
+}
+.dash-box .right-cont .text-box .title{
+	text-align: left;
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px dashed #CCCCCC;
+	font-size: 14px;
+	color: #333333;
+}
+.dash-box .right-cont .text-box .title span.fa{
+	margin-right: 8px;
+}
+.dash-box .right-cont .text-box .line{
+	position: relative;
+	width: 100%;
+	margin-top: 12px;
+	overflow: hidden;
+}
+.dash-box .right-cont .text-box .line label{
+	float: left;
+	width: 50px;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	font-size: 12px;
+	color: #333333;
+	margin-right: 7px;
+}
+.dash-box .right-cont .text-box .line input{
+	float: right;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	padding-left: 5px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+}
+.dash-box .right-cont .text-box .addBtn{
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	background: #FAFDFE;
+	border: 1px dashed #2AB5E6;
+	border-radius: 2px;
+	box-sizing: border-box;
+	font-size: 14px;
+	color: #2AB5E6;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.dash-box .right-cont .text-box .addBtn span.fa{
+	margin-right: 10px;
+}
+.dash-box .right-cont .text-box .link-btn{
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	width: 30px;
+	height: 30px;
+	background: #2AB5E6;
+	font-size: 14px;
+	color: #FFFFFF;
+	border: none;
+	cursor: pointer;
+}
+.newadd .itemname{
+	margin-top: 15px;
+}
+.bindbox{
+	width: 650px;
+	max-height: 70%;
+	overflow: hidden;
+	overflow-y: auto;
+	top: 100px;
+}
+.select-table{
+	width: 96%;
+	padding-left: 6px;
+	height: 30px;
+	line-height: 30px;
+	margin: 15px 14px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+}
+.cloumn-list{
+	width: 96%;
+	margin-left: 2%;
+}
+.cloumn-list tr th:first-child{
+	text-align: left;
+	padding-left: 30px;
+}
+.cloumn-list tr td:first-child{
+	text-align: left;
+	padding-left: 30px;
+}
+.cloumn-list tr td .cloumn-input{
+	width: 15px;
+	height: 15px;
+	margin-right: 10px;
+}
+.cloumn-list tr td .select-method{
+	background: none;
+	border: none;
+	font-size: 12px;
+}
+</style>
+<div class="project-box">
+	<div class="path"><a ui-sref='app.dashlist'>仪表盘管理</a> \ {{dashName}}</div>
+	<div class="lib-job-tab">
+		<a class="on">仪表盘</a>
+		<a ui-sref='app.datasource({dashId:dashId,dashName:dashName})'>数据源</a>
+	</div>
+	<div class="save-success-tip" ng-show="saveSuccess">保存成功！</div>
+	<div class="save-btn">
+		<button class="save-view" ng-click="preview()"><span class="fa fa-eye"></span>预览</button>
+		<button class="save-view" ng-click="newAddDashboard()"><span class="fa fa-save"></span>保存</button>
+	</div>
+	<div class="dash-box">
+		<div class="left-cont">
+			<ul class="ul-tab">
+				<li>图表</li>
+				<li class="active">设备</li>
+				<li>通用</li>
+			</ul>
+			<div class="img-box">
+				<img draggable="true" ruby-dragstart="dragstart(event)" class="img" src="statics/img/guolu.png" alt="燃气蒸汽锅炉" />
+			</div>
+		</div>
+		<div class="canvas-cont" ruby-drop="drop(event)" ruby-dragover="dragover(event)">
+			<canvas id="canvas" width="1200" height="900"></canvas>
+		</div>
+		<div class="right-cont">
+			<ul class="ul-tab">
+				<li ng-class="{active: !isClassData}" ng-click="isClassData=false">样式设置</li>
+				<li ng-class="{active: isClassData}" ng-click="isClassData=true">数据设置</li>
+			</ul>
+			<div class="text-box" ng-show="!isClassData">
+				<div class="title"><span class="fa fa-address-book-o"></span>属性</div>
+				<div class="line">
+					<label>名称</label>
+					<input type="text" ng-model="canvasModel.name" ng-blur="updateView('name')" />
+				</div>
+				<div class="line">
+					<label>横坐标</label>
+					<input type="text" ng-model="canvasModel.left" ng-blur="updateView('left')" />
+				</div>
+				<div class="line">
+					<label>纵坐标</label>
+					<input type="text" ng-model="canvasModel.top" ng-blur="updateView('top')" />
+				</div>
+				<div class="line">
+					<label>旋转</label>
+					<input type="text" ng-model="canvasModel.angle" ng-blur="updateView('angle')" />
+				</div>
+				<div class="line">
+					<label>缩放</label>
+					<input type="text" ng-model="canvasModel.scaleX" ng-blur="updateView('scale')" />
+				</div>
+			</div>
+			<div class="text-box" ng-show="isClassData">
+				<div class="title"><span class="fa fa-database"></span>数据</div>
+				<div class="" ng-repeat="zb in dataList">
+					<div class="line">
+						<label>指标名称</label>
+						<input type="text" ng-model="zb.zbName" ng-blur="updateMarkView(zb.zbIndex, $index)" />
+					</div>
+					<div class="line">
+						<label>数据</label>
+						<input type="text" ng-model="zb.zbData" ng-change="updateMarkView(zb.zbIndex, $index)" />
+						<button class="link-btn" ng-click="toBindData(zb.zbIndex, $index)"><span class="fa fa-link"></span></button>
+					</div>
+				</div>
+				<button class="addBtn" ng-click="addMark()"><span class="fa fa-plus"></span>添加指标</button>
+			</div>
+		</div>
+	</div>
+	<!--数据绑定-->
+	<div class="shadow" ng-show="isBindData" ng-click="isBindData = false"></div>
+	<div class="newadd bindbox" ng-show="isBindData">
+		<div class="addtitle">
+			<span class="title">数据绑定</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isBindData = false"></span>
+		</div>
+		<div class="itemname">数据表</div>
+		<select class="select-table" ng-change="changeColumn()" ng-model="computeData.id" ng-options="o.id as o.name for o in dataTables"></select>
+		<table class="project-list cloumn-list">
+			<thead>
+				<tr>
+					<th>列名称</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="col in cloumnNames">
+					<td><input type="radio" ng-model="computeData.column" ng-value="col" ng-change="changeRadio($index)" class="cloumn-input" name="cloumn-name" />{{col}}</td>
+					<td><select class="select-method" ng-model="checkeds[$index]" ng-change="changeMethod($index)" ng-options="o.id as o.name for o in computeMethods"></select></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="submit">
+			<button class="btn btnok" ng-click="submitBindData()">确定</button>
+			<button class="btn btnca" ng-click="isBindData = false">取消</button>
+		</div>
+	</div>
+	<!--预览仪表盘-->
+	<div class="shadow" ng-show="isPreviewShow" ng-click="isPreviewShow = false"></div>
+	<div class="newadd" ng-show="isPreviewShow">
+		<div class="addtitle">
+			<span class="title">预览</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isPreviewShow = false"></span>
+		</div>
+		<div id="preview">
+			<img ng-src="{{previewImg}}" width="800" height="600" alt="" />
+		</div>
+	</div>
+</div>

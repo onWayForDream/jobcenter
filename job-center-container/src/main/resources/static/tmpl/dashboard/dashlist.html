@@ -1,0 +1,162 @@
+<style>
+.bash-cont{
+	padding: 20px 0 0 0;
+	overflow: hidden;
+}
+.add-bash-btn, .dash-box{
+	float: left;
+	width: 265px;
+	height: 128px;
+	background: #FFFFFF;
+	box-shadow: 0 2px 8px 0 rgba(0,0,0,0.11);
+	border-radius: 4px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	border: 1px solid #FFFFFF;
+	box-sizing: border-box;
+}
+.add-bash-btn:hover, .dash-box:hover{
+	cursor: pointer;
+	border: 1px solid #2AB5E6;
+}
+.add-bash-btn .circle{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #2AB5E6;
+	box-shadow: 0 10px 14px 0 rgba(0,0,0,0.10);
+	border-radius:50px;
+	margin-top: 20px;
+}
+.add-bash-btn .circle .fa{
+	color: #FFFFFF;
+	font-size: 14px;
+}
+.add-bash-btn .text{
+	display: block;
+	width: 100%;
+	font-size: 14px;
+	color: #333333;
+	margin-top: 15px;
+}
+.dash-box .dash-box-up{
+	width: 263px;
+	height: 90px;
+	background: url(./statics/img/img01.png) center no-repeat;
+	background-size: cover;
+	text-align: left;
+}
+.dash-box .dash-box-up .dash-name{
+	display: inline-block;
+	margin: 25px 0 0 15px;
+	font-size: 18px;
+	color: #FFFFFF;
+}
+.dash-box .dash-box-up .dash-name:hover{
+	border-bottom: 1px solid #FFFFFF;
+}
+.dash-box .dash-box-up .dash-name:hover span.fa-pencil-square-o{
+	display: inline-block;
+}
+.dash-box .dash-box-up span.fa-pencil-square-o{
+	display: none;
+	cursor: pointer;
+	margin-left: 10px;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+.dash-box .dash-box-up .dash-time{
+	display: block;
+	margin: 5px 0 0 15px;
+	font-size: 12px;
+	color: #FFFFFF;
+}
+.dash-box .dash-box-dw{
+	width: 265px;
+	height: 38px;
+	line-height: 38px;
+	text-align: left;
+	font-size: 12px;
+	color: #999999;
+}
+.dash-box .dash-box-dw .item{
+	margin-left: 10px;
+	font-size: 12px;
+	color: #999999;
+}
+.dash-box .dash-box-dw .item span.fa{
+	margin-right: 5px;
+}
+.dash-box .dash-box-dw .item:last-child{
+	float: right;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.errormsg{
+	height: 20px;
+	line-height: 20px;
+	text-align: right;
+	font-size: 12px;
+	color: #E26060;
+	padding: 0 14px;
+}
+</style>
+<div class="project-box">
+	<div class="path">仪表盘管理</div>
+	<div class="project-query">
+		<div class="query-up"><span>查询条件</span></div>
+		<div class="query-down">
+			<div class="query-name">
+				<input class="query-input" type="text" ng-model="queryName" placeholder="请输入仪表盘名称..." />
+				<button class="search" ng-click="getALlDashBoard()"><span class="fa fa-search"></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="query-up"><span>仪表盘列表</span></div>
+		<div class="bash-cont">
+			<div class="add-bash-btn" ng-click="isAddProShow = true">
+				<span class="circle"><span class="fa fa-plus"></span></span>
+				<span class="text">添加仪表盘</span>
+			</div>
+			<div class="dash-box" ng-repeat="dash in dashboards">
+				<div class="dash-box-up" ng-click="editDashboard(dash.id,dash.name)">
+					<span class="dash-name">{{ dash.name }}<span class="fa fa-pencil-square-o"></span></span>
+					<span class="dash-time">{{ dash.cjsj }}创建</span>
+				</div>
+				<div class="dash-box-dw">
+					<span class="item"><span class="fa fa-code"></span>代码</span>
+					<span class="item"><span class="fa fa-copy"></span>复制</span>
+					<span class="item"><span class="fa fa-share-square-o"></span>发布</span>
+					<span class="item" ng-click="deleteDashboard($event, dash.id)"><span class="fa fa-trash-o"></span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--新增仪表盘-->
+	<div class="shadow" ng-show="isAddProShow"></div>
+	<div class="newadd" ng-show="isAddProShow">
+		<div class="addtitle">
+			<span class="title">新增仪表盘</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isAddProShow = false"></span>
+		</div>
+		<div class="itemname">仪表盘名称</div>
+		<input type="text" class="iteminput" ng-model="dashName" placeholder="只允许包含汉字、字母、数字及下划线且不超过20个字符" />
+		<div class="errormsg" ng-show="errorMsg">{{errorMsg}}</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="toDashboard()">确定</button>
+			<button class="btn btnca" ng-click="isAddProShow = false">取消</button>
+		</div>
+	</div>
+	<!--删除确认框-->
+	<div class="shadow" ng-show="isDelProShow"></div>
+	<div class="delproject" ng-show="isDelProShow">
+		<div class="deltext">删除后将无法恢复，确定删除该仪表盘？</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="confirmDel()">确认</button>
+			<button class="btn btnca" ng-click="isDelProShow = false">取消</button>
+		</div>
+	</div>
+</div>

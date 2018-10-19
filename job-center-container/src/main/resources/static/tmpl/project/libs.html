@@ -1,0 +1,114 @@
+<style type="text/css">
+	.pagination {
+		margin-top: 13px;
+		margin-bottom: 0;
+	}
+	.project-query {
+		height: 68px;
+	}
+	.menu {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.menu .btn {
+		margin-top: 12px;
+		margin-bottom: 12px;
+	}
+	.nodata {
+		padding: 25px 0;
+	}
+</style>
+<div class="project-box" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+	<div class="path">
+		<a ui-sref='app.project'>项目管理</a> \ {{projectName}}</div>
+	<div class="lib-job-tab">
+		<a class="on">库管理</a>
+		<a ui-sref='app.jobs({projectId:projectId,projectName:projectName})'>JOB管理</a>
+	</div>
+	<div class="project-query">
+		<div class="query-up"><span>查询条件</span></div>
+		<div class="query-down">
+			<div class="query-name">
+				<input class="query-input" type="text" ng-model="queryName" placeholder="请输入jar包名称..." />
+				<button class="search" ng-click="getLibs(1)"><span class="fa fa-search"></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="query-up"><span>库列表</span></div>
+		<button class="btn addbtn" ng-click="isUploadShow = true"><span class="fa fa-plus"></span>上传库</button>
+		<button class="btn delbtn" ng-click="isDelProShow = true" ng-disabled="delLibName.length == 0"><span class="fa fa-minus"></span>删除库</button>
+		<table class="project-list">
+			<thead>
+				<tr>
+					<th><input type="checkbox" class="input_check" ng-model="select_all" ng-click="selectAll()" /></th>
+					<th>库名称</th>
+					<th>上传时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="lib in libs">
+					<td><input type="checkbox" class="input_check" ng-model="m[lib.name]" ng-checked="select_one" ng-click="selectOne(m[lib.name])" /></td>
+					<td>{{lib.name}}</td>
+					<td>{{lib.createTime}}</td>
+					<td>
+						<a class="edit fa fa-pencil" title="编辑" ng-click="editLibs()"></a>
+						<a class="delete fa fa-trash-o" title="删除 " ng-click="deleteLibs($event, lib.name)"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 分页 控件-->
+		<my-pager pager="pager"></my-pager>
+		<!--无数据-->
+		<div class="nodata" ng-show="isPagination">
+			<img src="./statics/img/nojar.png" alt="无数据" />
+		</div>
+	</div>
+	<!--上传库-->
+	<div class="shadow" ng-show="isUploadShow"></div>
+	<div id="uploader" class="newadd" ng-show="isUploadShow">
+		<div class="addtitle">
+			<span class="title">上传业务jar包</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isUploadShow = false;uploader.queue = [];"></span>
+		</div>
+		<div class="pickerbox">
+			<div id="picker">
+				<span class="fa fa-arrow-up"></span>上传文件
+				<input type="file" class="file-input" nv-file-select="" uploader="uploader" multiple />
+			</div>
+			<div class="tiptext">（请将运行所需要的jar包也上传）</div>
+		</div>
+		<table class="project-list" style="width: 618px;margin: 0 0 0 14px;table-layout:fixed;">
+			<thead>
+				<tr>
+					<th>名称</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="thelist">
+				<tr ng-repeat="item in uploader.queue">
+					<td>{{ item.file.name }}</td>
+					<td ng-class="{0:" readyupload ',1:'uploading ',2:'uploadsuccess ',3:'uploaderror '}[isUploadState]">{{ item.state }}</td>
+          <td><a class="delete fa fa-trash-o" title="删除 " ng-click="item.remove()"></a></td>
+      	</tr>
+			</tbody>
+		</table>
+		<div class="submit">
+			<button class="btn btnok" ng-show="!isUploadComplete" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">上传</button>
+			<button class="btn btnok" ng-show="isUploadComplete" ng-click="isUploadShow = false;uploader.queue = [];isUploadComplete = false;">完成</button>
+			<button class="btn btnca" ng-click="isUploadShow = false;uploader.queue = [];">取消</button>
+		</div>
+	</div>
+	<!--删除库确认框-->
+	<div class="shadow" ng-show="isDelProShow"></div>
+	<div class="delproject" ng-show="isDelProShow">
+		<div class="deltext">确认删除所选的库?</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="confirmDel()">确认</button>
+			<button class="btn btnca" ng-click="isDelProShow = false">取消</button>
+		</div>
+	</div>
+</div>

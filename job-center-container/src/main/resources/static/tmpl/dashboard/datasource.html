@@ -1,0 +1,363 @@
+<style type="text/css">
+.pagination{
+	margin-top: 13px;
+	margin-bottom: 0;
+}
+.project-query{
+	height: 68px;
+}
+.newadd{
+	top: 50px;
+}
+.menu{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.menu .btn{
+	margin-top: 12px;
+	margin-bottom: 12px;
+}
+.nodata{
+	padding: 25px 0;
+}
+.itemcontent{
+	margin-top: 5px;
+	padding: 0 14px;
+	overflow: hidden;
+}
+.job-bing-item{
+	float: left;
+	margin-right: 20px;
+	height: 30px;
+	line-height: 30px;
+	overflow: hidden;
+}
+.job-bing-item .job-bing-radio{
+	width: 15px;
+	height: 15px;
+}
+.job-bing-item .text{
+	font-size: 12px;
+	color: #333;
+}
+.newadd .itemname{
+	margin-top: 15px;
+}
+.pickerbox{
+	height: auto;
+	overflow: hidden;
+}
+.data-path{
+	width: 100%;
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #333333;
+}
+.pickerbox .line{
+	position: relative;
+	width: 100%;
+	margin-top: 12px;
+	overflow: hidden;
+}
+.pickerbox .line label{
+	float: left;
+	width: 56px;
+	height: 32px;
+	line-height: 32px;
+	text-align: right;
+	font-size: 12px;
+	color: #333333;
+	margin-right: 10px;
+}
+.pickerbox .line input{
+	float: left;
+	width: 260px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	padding-left: 5px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+}
+.pickerbox .line .select-table{
+	float: left;
+	width: 268px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	padding-left: 5px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+}
+.pickerbox .line textarea{
+	float: left;
+	width: 540px;
+	line-height: 25px;
+	text-align: left;
+	padding-left: 5px;
+	background: #FFFFFF;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px;
+	font-size: 12px;
+	color: #333333;
+}
+.pickerbox .test-link{
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 0 0 15px;
+	background: #2AB5E6;
+	box-shadow: 0 10px 14px 0 rgba(0,0,0,0.10);
+	border-radius: 37px;
+	border: none;
+	font-size: 14px;
+	color: #FFFFFF;
+	cursor: pointer;
+}
+.pickerbox .test-link span.fa{
+	margin-right: 8px;
+}
+.errormsg{
+	padding: 0 14px;
+	text-align: right;
+	font-size: 12px;
+	color: red;
+}
+.pickerbox .opentsdb-link{
+	margin-top: 15px;
+	margin-left: 65px;
+}
+.preview-table{
+	width: 100%;
+	overflow: hidden;
+	overflow-x: auto;
+}
+.preview-table th{
+	min-width: 150px;
+}
+</style>
+<div class="project-box" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+	<div class="path"><a ui-sref='app.dashlist'>仪表盘管理</a> \ {{dashName}}</div>
+	<div class="lib-job-tab">
+		<a ui-sref='app.dashboard({dashId:dashId,dashName:dashName})'>仪表盘</a>
+		<a class="on">数据源</a>
+	</div>
+	<div class="project-query">
+		<div class="query-up"><span>查询条件</span></div>
+		<div class="query-down">
+			<div class="query-name">
+				<input class="query-input" type="text" ng-model="queryName" placeholder="请输入数据名称..." />
+				<button class="search" ng-click="getDataList(1)"><span class="fa fa-search"></span></button>
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="query-up"><span>数据列表</span></div>
+		<button class="btn addbtn" ng-click="isAddDatasource = true"><span class="fa fa-plus"></span>新增数据</button>
+		<table class="project-list">
+			<thead>
+				<tr>
+					<th>数据名称</th>
+					<th>类型</th>
+					<th>创建时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in dataList">
+					<td><a ng-click="previewTable(data)">{{data.name}}</a></td>
+					<td>{{data.type}}</td>
+					<td>{{data.cjsj}}</td>
+					<td>
+						<a class="edit fa fa-pencil" title="编辑" ng-click="editDataById($event, data)"></a>
+						<a class="delete fa fa-trash-o" title="删除 " ng-click="deleteData($event, data.id)"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 分页 控件-->
+		<my-pager pager="pager"></my-pager>
+  	<!--无数据-->
+  	<div class="nodata" ng-show="isPagination">
+  		<img src="./statics/img/img03.png" alt="无数据" />
+  	</div>
+  	<!--预览表数据-->
+  	<div ng-show="cloumnNames.length > 0" style="margin-top:25px;padding-top:25px;border-top:1px dashed #979797";></div>
+  	<div class="preview-table">
+	  	<table class="project-list">
+				<thead>
+					<tr>
+						<th ng-repeat="name in cloumnNames">{{name}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="data in tableDatas">
+						<td ng-repeat="num in data track by $index">{{num}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--新增数据-->
+	<div class="shadow" ng-show="isAddDatasource"></div>
+	<div class="newadd" ng-show="isAddDatasource">
+		<div class="addtitle">
+			<span class="title">新增数据</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isAddDatasource = false"></span>
+		</div>
+		<div class="itemname">数据名称</div>
+		<input type="text" class="iteminput" ng-model="AddDataSource.name" placeholder="只允许包含汉字、字母、数字及下划线且不超过20个字符" />
+		<div class="errormsg" ng-show="errorMsg">{{errorMsg}}</div>
+		<div class="itemname">数据类型</div>
+		<div class="itemcontent">
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="csv" ng-model="AddDataSource.type" name="datatype" ng-checked="true" />
+				<span class="text">静态数据</span>
+			</div>
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="mysql" ng-model="AddDataSource.type" name="datatype" />
+				<span class="text">MySQL数据库</span>
+			</div>
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="opentsdb" ng-model="AddDataSource.type" name="datatype" />
+				<span class="text">OpenTSDB</span>
+			</div>
+		</div>
+		<div class="itemname">数据文件</div>
+		<!--静态文件-->
+		<div class="pickerbox" ng-show="AddDataSource.type == 'csv'">
+			<div id="picker">
+				<span class="fa fa-arrow-up"></span>上传文件
+				<input type="file" class="file-input" nv-file-select="" uploader="uploader" />
+			</div>
+			<div class="tiptext">（支持.csv格式文件，大小不超过1M）</div>
+			<div class="data-path" ng-show="AddDataSource.path!=''">{{AddDataSource.path}}</div>
+		</div>
+		<!--MySQL数据库-->
+		<div class="pickerbox" ng-show="AddDataSource.type == 'mysql'">
+			<div class="line">
+				<label>URL</label>
+				<input type="text" ng-model="AddDataSource.url">
+			</div>
+			<div class="line">
+				<label>用户名</label>
+				<input type="text" ng-model="AddDataSource.username">
+			</div>
+			<div class="line">
+				<label>密码</label>
+				<input type="text" ng-model="AddDataSource.password">
+				<button class="test-link" ng-click="testConnect(0)"><span class="fa fa-link"></span>连接</button>
+			</div>
+			<div class="line" ng-if="dataTables.length > 0">
+				<label>数据表</label>
+				<select class="select-table" ng-model="AddDataSource.tableName" ng-options="o.id as o.name for o in dataTables"></select>
+			</div>
+		</div>
+		<!--OpenTSDB-->
+		<div class="pickerbox" ng-show="AddDataSource.type == 'opentsdb'">
+			<div class="line">
+				<label>URL</label>
+				<input type="text" ng-model="AddDataSource.url">
+			</div>
+			<div class="line">
+				<label>参数</label>
+				<textarea rows="3" ng-model="AddDataSource.param" placeholder="请输入SQL语句..."></textarea>
+			</div>
+			<button class="test-link opentsdb-link" ng-click=""><span class="fa fa-link"></span>连接</button>
+		</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="submitDataSource()">确定</button>
+			<button class="btn btnca" ng-click="isAddDatasource = false">取消</button>
+		</div>
+	</div>
+	<!--编辑数据-->
+	<div class="shadow" ng-show="isEditDatasource"></div>
+	<div class="newadd" ng-show="isEditDatasource">
+		<div class="addtitle">
+			<span class="title">编辑数据</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isEditDatasource = false"></span>
+		</div>
+		<div class="itemname">数据名称</div>
+		<input type="text" class="iteminput" ng-model="editDataSource.name" placeholder="只允许包含汉字、字母、数字及下划线且不超过20个字符" />
+		<div class="errormsg" ng-show="errorMsg">{{errorMsg}}</div>
+		<div class="itemname">数据类型</div>
+		<div class="itemcontent">
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="csv" ng-model="editDataSource.type" name="editdatatype" ng-checked="true" />
+				<span class="text">静态数据</span>
+			</div>
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="mysql" ng-model="editDataSource.type" name="editdatatype" />
+				<span class="text">MySQL数据库</span>
+			</div>
+			<div class="job-bing-item">
+				<input class="job-bing-radio" type="radio" value="opentsdb" ng-model="editDataSource.type" name="editdatatype" />
+				<span class="text">OpenTSDB</span>
+			</div>
+		</div>
+		<div class="itemname">数据文件</div>
+		<!--静态文件-->
+		<div class="pickerbox" ng-show="editDataSource.type == 'csv'">
+			<div id="picker">
+				<span class="fa fa-arrow-up"></span>上传文件
+				<input type="file" class="file-input" nv-file-select="" uploader="uploader" />
+			</div>
+			<div class="tiptext">（支持.csv格式文件，大小不超过1M）</div>
+			<div class="data-path" ng-show="editDataSource.path!=''">{{editDataSource.path}}</div>
+		</div>
+		<!--MySQL数据库-->
+		<div class="pickerbox" ng-show="editDataSource.type == 'mysql'">
+			<div class="line">
+				<label>URL</label>
+				<input type="text" ng-model="editDataSource.url">
+			</div>
+			<div class="line">
+				<label>用户名</label>
+				<input type="text" ng-model="editDataSource.username">
+			</div>
+			<div class="line">
+				<label>密码</label>
+				<input type="text" ng-model="editDataSource.password">
+				<button class="test-link" ng-click="testConnect(1)"><span class="fa fa-link"></span>连接</button>
+			</div>
+			<div class="line" ng-if="dataTables.length > 0">
+				<label>数据表</label>
+				<select class="select-table" ng-model="editDataSource.tableName" ng-options="o.id as o.name for o in dataTables"></select>
+			</div>
+		</div>
+		<!--OpenTSDB-->
+		<div class="pickerbox" ng-show="editDataSource.type == 'opentsdb'">
+			<div class="line">
+				<label>URL</label>
+				<input type="text" ng-model="editDataSource.url">
+			</div>
+			<div class="line">
+				<label>参数</label>
+				<textarea rows="3" ng-model="editDataSource.param" placeholder="请输入SQL语句..."></textarea>
+			</div>
+			<button class="test-link opentsdb-link" ng-click=""><span class="fa fa-link"></span>连接</button>
+		</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="submitEditData()">确定</button>
+			<button class="btn btnca" ng-click="isEditDatasource = false">取消</button>
+		</div>
+	</div>
+	<!--删除确认框-->
+	<div class="shadow" ng-show="isDelProShow"></div>
+	<div class="delproject" ng-show="isDelProShow">
+		<div class="deltext">删除数据后,仪表盘的数据将解除绑定,是否要删除?</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="confirmDel()">确认</button>
+			<button class="btn btnca" ng-click="isDelProShow = false">取消</button>
+		</div>
+	</div>
+</div>

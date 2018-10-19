@@ -1,0 +1,441 @@
+<style type="text/css">
+	.menu {
+		margin-top: 5px;
+	}
+
+	.addjobcont {
+		padding: 0 10px;
+	}
+
+	.addjobcont .additem {
+		width: 100%;
+		margin-top: 10px;
+		text-align: left;
+	}
+
+	.addjobcont .additem .itemtitle {
+		width: 100%;
+		height: 32px;
+		line-height: 32px;
+		font-size: 14px;
+		color: #333;
+		border-bottom: 1px dashed #CCCCCC;
+	}
+
+	.addjobcont .additem .itemtitle span {
+		margin-right: 10px;
+	}
+
+	.addjobcont .additem .itemcontent {
+		padding: 15px 20px 10px;
+	}
+
+	.addjobcont .additem .itemcontent .job-input-box {
+		width: 100%;
+		height: 32px;
+		line-height: 32px;
+		overflow: hidden;
+	}
+
+	.addjobcont .additem .itemcontent .job-input-box:last-child {
+		margin-top: 10px;
+	}
+
+	.addjobcont .additem .itemcontent .job-input-box .text {
+		width: 64px;
+		height: 32px;
+		float: left;
+	}
+
+	.addjobcont .additem .itemcontent .job-input-box .job-input {
+		float: left;
+		width: 490px;
+		height: 30px;
+		line-height: 30px;
+		padding-left: 10px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		color: #333;
+	}
+
+	.addjobcont .additem .itemcontent .job-textarea-box {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	.addjobcont .additem .itemcontent .job-textarea-box .text {
+		float: left;
+		width: 64px;
+		height: 32px;
+		line-height: 32px;
+	}
+
+	.addjobcont .additem .itemcontent .job-textarea-box .job-textarea {
+		overflow: hidden;
+	}
+
+	.addjobcont .additem .itemcontent .text {
+		width: 120px !important;
+	}
+
+	.addjobcont .additem .itemcontent .job-textarea-box .job-textarea textarea {
+		width: 100%;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		box-sizing: border-box;
+		padding: 10px;
+		font-size: 12px;
+	}
+
+	.addjobcont .submit {
+		width: 100%;
+		overflow: hidden;
+		border-top: 1px solid #ccc;
+	}
+
+	.addjobcont .submit .btn {
+		width: 82px;
+		margin-bottom: 14px;
+		background: #CCCCCC;
+	}
+
+	.addjobcont .submit .btnok {
+		background: #2AB5E6;
+	}
+
+	.job-schedul {
+		width: 100%;
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+
+	.job-schedul .job-schedul-title {
+		width: 100%;
+		height: 30px;
+		line-height: 30px;
+		overflow: hidden;
+	}
+
+	.job-schedul .job-schedul-title .job-schedul-radio {
+		width: 15px;
+		height: 15px;
+	}
+
+	.job-schedul .job-schedul-title .text {
+		font-size: 12px;
+		color: #333;
+	}
+
+	.job-schedul .job-schedul-cont {
+		width: 100%;
+		margin-top: 5px;
+		margin-bottom: 10px;
+		overflow: hidden;
+	}
+
+	.job-schedul .job-schedul-cont .text {
+		float: left;
+		width: 64px;
+		height: 32px;
+		line-height: 32px;
+		font-size: 12px;
+		color: #333;
+	}
+
+	.job-schedul .job-schedul-cont .time-input {
+		float: left;
+		width: 480px;
+		height: 30px;
+		line-height: 30px;
+		padding-left: 10px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		color: #333;
+	}
+
+	.job-schedul .job-schedul-cont .short {
+		width: 380px !important;
+	}
+
+	.job-schedul .job-schedul-cont .tip {
+		float: left;
+		height: 32px;
+		line-height: 32px;
+		font-size: 12px;
+		color: #333;
+		margin-left: 12px;
+	}
+
+	.job-schedul .job-schedul-cont .tip .fa {
+		font-size: 18px;
+		vertical-align: top;
+		margin-top: 8px;
+	}
+
+	.job-schedul .job-schedul-cont .cycle-select {
+		width: 90px;
+		height: 32px;
+		line-height: 32px;
+		font-size: 12px;
+		color: #333;
+		padding-left: 10px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		margin-left: 10px;
+	}
+
+	.job-bing-item {
+		float: left;
+		margin-right: 20px;
+		height: 30px;
+		line-height: 30px;
+		overflow: hidden;
+	}
+
+	.job-bing-item .job-bing-radio {
+		width: 15px;
+		height: 15px;
+	}
+
+	.job-bing-item .text {
+		font-size: 12px;
+		color: #333;
+	}
+
+	.tab-body {
+		background: rgba(250, 251, 254, 1);
+		border: 1px solid rgba(204, 204, 204, 1);
+		padding: 0 8px;
+	}
+
+	.tab-header {
+		text-align: left;
+		padding-left: 0px;
+		padding-right: 0px;
+		padding-top: 14px;
+		padding-bottom: 3px;
+	}
+
+	.tab-header div {
+		padding: 5px 25px;
+		color: #CCCCCC;
+		display: inline;
+		cursor: pointer;
+	}
+
+	.tab-header div.active {
+		color: #333333 !important;
+		background: rgba(250, 251, 254, 1);
+		border-width: 1px 1px 0px 1px;
+		border-color: rgba(204, 204, 204, 1);
+		border-style: solid;
+		border-radius: 3px;
+	}
+</style>
+<div class="project-box">
+	<div class="path">
+		<a ui-sref='app.project'>项目管理</a> \
+		<a ui-sref='app.jobs({projectId:projectId,projectName:projectName})'>{{projectName}}</a> \ 编辑JOB</div>
+	<div class="menu">
+		<div class="query-up">
+			<span>编辑JOB</span>
+		</div>
+		<div class="addjobcont">
+			<div class="tab">
+				<div class="tab-header">
+					<div ng-repeat="runtime in runtimeTypes" ng-class="{active:$index==selectedRuntimeIndex}" ng-click="changeRuntime($index)">
+						<span ng-bind="runtime.name"></span>
+					</div>
+				</div>
+				<div class="tab-body">
+					<div class="tab-content" ng-show="selectedRuntimeIndex == 0">
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-list-alt"></span>基本信息</div>
+							<div class="itemcontent">
+								<div class="job-input-box">
+									<span class="text">JOB名称</span>
+									<input class="job-input" id="jobname" type="text" ng-model="editPostModel.jobName" placeholder="请输入JOB名称..." />
+								</div>
+								<div class="job-input-box">
+									<span class="text">运行类名</span>
+									<input class="job-input" id="executeclass" type="text" ng-model="editPostModel.executeClass" placeholder="请输入运行类名..." />
+								</div>
+							</div>
+						</div>
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-code"></span>参数信息（请以JSON格式填写）</div>
+							<div class="itemcontent">
+								<div class="job-textarea-box">
+									<span class="text">填写参数</span>
+									<div class="job-textarea">
+										<textarea name="params" id="jobparam" rows="5" ng-model="editPostModel.jobParamJson" placeholder="请输入参数…"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-cogs"></span>配置信息</div>
+							<div class="itemcontent">
+								<div class="job-input-box">
+									<span class="text" style="width: 120px;">properties文件名</span>
+									<input class="job-input" id="properties" type="text" ng-model="editPostModel.propertiesFile" placeholder="请输入properties文件名..."
+									/>
+								</div>
+								<div class="job-input-box">
+									<span class="text" style="width: 120px;">profile name</span>
+									<input class="job-input" id="profile" type="text" ng-model="editPostModel.profileName" placeholder="请输入profile name..." />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-content" ng-show="selectedRuntimeIndex == 1">
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-list-alt"></span>基本信息</div>
+							<div class="itemcontent">
+								<div class="job-input-box">
+									<span class="text">JOB名称</span>
+									<input class="job-input" id="jobname" type="text" ng-model="editPostModel.jobName" placeholder="请输入JOB名称..." />
+								</div>
+								<div class="job-input-box">
+									<span class="text">spring bean name</span>
+									<input class="job-input" id="executeclass" type="text" ng-model="editPostModel.executeClass" placeholder="请输入运行类名..." />
+								</div>
+							</div>
+						</div>
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-code"></span>参数信息</div>
+							<div class="itemcontent">
+								<div class="job-textarea-box">
+									<span class="text">填写参数</span>
+									<div class="job-textarea">
+										<textarea name="params" id="jobparam" rows="5" ng-model="editPostModel.jobParamJson" placeholder="请输入参数…"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-content" ng-show="selectedRuntimeIndex == 2">
+						<div class="additem">
+							<div class="itemtitle">
+								<span class="fa fa-list-alt"></span>基本信息</div>
+							<div class="itemcontent">
+								<div class="job-input-box">
+									<span class="text">JOB名称</span>
+									<input class="job-input" id="jobname" type="text" ng-model="editPostModel.jobName" placeholder="请输入JOB名称..." />
+								</div>
+								<div class="job-input-box">
+									<span class="text">启动脚本和参数</span>
+									<input class="job-input" id="executeclass" type="text" ng-model="editPostModel.executeClass" placeholder="请输入运行类名..." />
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="additem">
+					<div class="itemtitle">
+						<span class="fa fa-history"></span>调度信息</div>
+					<div class="itemcontent">
+						<div class="job-schedul">
+							<div class="job-schedul-title">
+								<input class="job-schedul-radio" type="radio" value="MANUAL" ng-model="editPostModel.scheduleType" name="mode" ng-checked="true"
+								/>
+								<span class="text">运行一次</span>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">开始时间</span>
+								<input class="time-input" type="text" def-laydate id="once_start_time" ng-model="editStartTimeA" min-date="{{nowTime}}" placeholder="请选择开始时间"
+								/>
+								<p class="tip">
+									<span class="fa fa-calendar"></span>（可不填写，默认提交后立即运行）</p>
+							</div>
+						</div>
+						<div class="job-schedul">
+							<div class="job-schedul-title">
+								<input class="job-schedul-radio" type="radio" value="INTERVAL" ng-model="editPostModel.scheduleType" name="mode" />
+								<span class="text">间隔调度</span>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">间隔时间</span>
+								<input class="time-input short" id="intervaltime" type="text" ng-model="editIntervalTime" placeholder="请输入间隔时间(必须为正整数)" />
+								<select class="cycle-select" ng-model="selectedCycle" ng-options="o.id as o.name for o in cycles"></select>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">开始时间</span>
+								<input class="time-input" type="text" def-laydate id="repeat_start_time" ng-model="editStartTimeB" min-date="{{nowTime}}"
+								 placeholder="请选择开始时间" />
+								<p class="tip">
+									<span class="fa fa-calendar"></span>（可不填写，默认提交后立即运行）</p>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">停止时间</span>
+								<input class="time-input" type="text" def-laydate id="repeat_end_time" ng-model="editEndTimeB" min-date="{{nowTime}}" placeholder="请选择停止时间"
+								/>
+								<p class="tip">
+									<span class="fa fa-calendar"></span>（可不填写，默认在手动停止之前一直运行）</p>
+							</div>
+						</div>
+						<div class="job-schedul">
+							<div class="job-schedul-title">
+								<input class="job-schedul-radio" type="radio" value="CRON_EXPRESSION" ng-model="editPostModel.scheduleType" name="mode" />
+								<span class="text">Cron表达式调度</span>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">Cron表达式</span>
+								<input class="time-input" type="text" id="cronvalue" ng-model="editCronValue" placeholder="请输入Cron表达式..." />
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">开始时间</span>
+								<input class="time-input" type="text" def-laydate id="cron_start_time" ng-model="editStartTimeC" min-date="{{nowTime}}" placeholder="请选择开始时间"
+								/>
+								<p class="tip">
+									<span class="fa fa-calendar"></span>（可不填写，默认提交后立即运行）</p>
+							</div>
+							<div class="job-schedul-cont">
+								<span class="text">停止时间</span>
+								<input class="time-input" type="text" def-laydate id="cron_end_time" ng-model="editEndTimeC" min-date="{{nowTime}}" placeholder="请选择停止时间"
+								/>
+								<p class="tip">
+									<span class="fa fa-calendar"></span>（可不填写，默认在手动停止之前一直运行）</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="additem">
+					<div class="itemtitle">
+						<span class="fa fa-link"></span>并发处理（上次任务还没结束，本次任务又要开始运行了）</div>
+					<div class="itemcontent">
+						<div class="job-bing-item">
+							<input class="job-bing-radio" type="radio" value="JustRunIt" ng-model="editPostModel.concurrentOpt" name="concurrent" ng-checked="true"
+							/>
+							<span class="text">同时运行</span>
+						</div>
+						<div class="job-bing-item">
+							<input class="job-bing-radio" type="radio" value="SuspendAndWait" ng-model="editPostModel.concurrentOpt" name="concurrent"
+							/>
+							<span class="text">排队等待运行</span>
+						</div>
+						<div class="job-bing-item">
+							<input class="job-bing-radio" type="radio" value="SkipThisTime" ng-model="editPostModel.concurrentOpt" name="concurrent"
+							/>
+							<span class="text">跳过本次运行</span>
+						</div>
+					</div>
+				</div>
+				<div class="submit">
+					<button class="btn btnok" ng-click="submitEditJob()">确定</button>
+					<a class="btn btnca" ui-sref='app.jobs({projectId:projectId,projectName:projectName})'>取消</a>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,346 @@
+<style type="text/css">
+	.pagination {
+		margin-top: 13px;
+		margin-bottom: 0;
+	}
+	.project-query {
+		height: 68px;
+	}
+	.menu {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.menu .btn {
+		margin-top: 12px;
+		margin-bottom: 12px;
+	}
+	.query-params {
+		float: left;
+		text-align: left;
+		position: relative;
+	}
+	.query-params .job-name {
+		float: left;
+	}
+	.query-params .job-name span.text, .query-params .job-state span.text {
+		display: inline-block;
+		height: 32px;
+		line-height: 32px;
+		margin-right: 10px;
+	}
+	.query-params .job-name .query-input {
+		width: 280px;
+		height: 30px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		padding-left: 10px;
+	}
+	.query-params .job-state {
+		float: left;
+		margin-left: 20px;
+	}
+	.query-params .job-state .query-select {
+		width: 183px;
+		height: 30px;
+		background: #FFFFFF;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		color: #333;
+		padding-left: 10px;
+	}
+	.query-params .job-state .query-select option {
+		line-height: 30px;
+		border: 1px solid #ccc;
+	}
+	.query-params .search {
+		float: left;
+		margin-left: 20px;
+		width: 82px;
+		height: 30px;
+		background: #2AB5E6;
+		border: none;
+		box-shadow: 0 10px 14px 0 rgba(0, 0, 0, 0.10);
+		border-radius: 37px;
+		cursor: pointer;
+		color: #FFFFFF;
+	}
+	.query-params .search span {
+		padding-right: 5px;
+	}
+	.nodata {
+		padding: 50px 0;
+	}
+	.detail-box {
+		transition: all linear 0.3s;
+		width: 380px;
+		background: #FFFFFF;
+		box-shadow: -2px 0 8px 0 rgba(0, 0, 0, 0.11);
+		position: fixed;
+		top: 72px;
+		right: 0;
+		bottom: 0;
+		z-index: 99999;
+		padding: 0 20px;
+	}
+	.detail-box.ng-hide {
+		right: -380px;
+	}
+	.detailtitle {
+		margin-top: 15px;
+		text-align: left;
+	}
+	.detailtitle .title {
+		border-left: 4px solid #2AB5E6;
+		padding-left: 6px;
+	}
+	.detailtitle .close {
+		float: right;
+		cursor: pointer;
+	}
+	.detailcontent {
+		padding: 0 10px;
+	}
+	.detailitem {
+		width: 100%;
+		margin-top: 10px;
+		text-align: left;
+	}
+	.detailitem .itemtitle {
+		width: 100%;
+		height: 32px;
+		line-height: 32px;
+		font-size: 14px;
+		color: #333;
+		border-bottom: 1px dashed #CCCCCC;
+	}
+	.detailitem .itemtitle span {
+		margin-right: 10px;
+	}
+	.detailitem .itemcontent {
+		width: 100%;
+		height: 38px;
+		line-height: 38px;
+		margin-top: 15px;
+		box-sizing: border-box;
+		padding-left: 8px;
+		background: #FAFBFE;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		color: #333333;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.detailitem .itemcontent2 {
+		width: 100%;
+		max-height: 188px;
+		min-height: 38px;
+		margin-top: 15px;
+		line-height: 20px;
+		padding: 10px;
+		box-sizing: border-box;
+		background: #FAFBFE;
+		border: 1px solid #CCCCCC;
+		border-radius: 2px;
+		font-size: 12px;
+		color: #333333;
+		word-wrap: break-word;
+		word-break: break-all;
+		white-space: pre-wrap !important;
+		overflow: hidden;
+		overflow-y: auto;
+	}
+	.play-job {
+		margin-right: 10px;
+	}
+	.delete {
+		margin-right: 10px;
+	}
+	.fa-stop {
+		color: #E26060;
+	}
+	.fa-play {
+		color: #43DF91;
+	}
+	.detailbtn {
+		color: #2AB5E6;
+		text-decoration: underline;
+	}
+	.detailbtn:hover {
+		text-decoration: underline;
+	}
+	.detailbtn.disabledjob{
+		color: #ccc !important;
+	}
+	.caret {
+		width: 20px;
+		height: 28px;
+		line-height: 28px;
+		text-align: center;
+		font-size: 12px;
+		color: #2AB5E6;
+		cursor: pointer;
+		margin-left: -22px;
+	}
+	tr.subjobs {
+		width: 100%;
+		background: #F9F9F9 !important;
+		border-bottom: 1px solid #E6E6E6;
+	}
+	tr.subjob-more {
+		background: #F9F9F9 !important;
+	}
+	.project-list tr {
+		height: 28px;
+		line-height: 28px;
+	}
+	.project-list tr.stop:hover, .project-list tr.runing:hover, .project-list tr.failed:hover {
+		background-color: #fafafa;
+	}
+	.project-list tr.stop {
+		background: #FFFFFF;
+	}
+	.project-list tr.runing {
+		background: rgba(46, 202, 124, 0.10);
+	}
+	.project-list tr.failed {
+		background: rgba(226, 96, 96, 0.10);
+	}
+	.project-list tr td.stop {
+		color: #333333;
+	}
+	.project-list tr td.runing {
+		color: #2ECA7C;
+	}
+	.project-list tr td.failed {
+		color: #E26060;
+	}
+	.project-list tr th:first-child {
+		text-align: left;
+		padding-left: 50px;
+	}
+	.project-list tr td:first-child {
+		text-align: left;
+		padding-left: 50px;
+	}
+	.project-list tr.subjobs td:first-child {
+		text-align: left;
+		padding-left: 70px;
+	}
+</style>
+<div class="project-box">
+	<div class="path">
+		<a ui-sref='app.project'>项目管理</a> \ {{projectName}}
+	</div>
+	<div class="lib-job-tab">
+		<a ui-sref='app.libs({projectId:projectId, projectName:projectName})'>库管理</a>
+		<a class="on">JOB管理</a>
+	</div>
+	<div class="project-query">
+		<div class="query-up"><span>查询条件</span></div>
+		<div class="query-down">
+			<div class="query-params">
+				<div class="job-name">
+					<span class="text">JOB名称</span>
+					<input class="query-input" type="text" ng-model="queryName" placeholder="请输入JOB名称..." />
+				</div>
+				<div class="job-state">
+					<span class="text">运行状态</span>
+					<select class="query-select" ng-model="selectedState" ng-options="o.id as o.name for o in states"></select>
+				</div>
+				<button class="search" ng-click="getJobs(1)"><span class="fa fa-search"></span>查询</button>
+			</div>
+		</div>
+	</div>
+	<div class="menu">
+		<div class="query-up"><span>JOB组列表</span></div>
+		<a ui-sref='app.addjob({projectId:projectId, projectName:projectName})' class="btn addbtn"><span class="fa fa-plus"></span>新增JOB</a>
+		<table class="project-list">
+			<thead>
+				<tr>
+					<th>JOB组名称</th>
+					<th>运行状态</th>
+					<th>调度参数</th>
+					<th>最后修改时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody ng-repeat="job in jobs" ng-init="outerIndex = $index">
+				<tr ng-class="{runing:job.status=='运行中', stop:job.status=='已停止', failed:job.status=='异常'}">
+					<td>
+						<span ng-if="job.jobResolver" class="caret fa" ng-class="jobs[outerIndex].isChildShow ? 'fa-caret-down' : 'fa-caret-right'" ng-click="getSubjobs($event,job.jobId,outerIndex)"></span>
+						<a ng-if="job.jobResolver" class="detailbtn" ng-click="getJobDetail(job.jobId)">{{job.jobName}}{{"（" + job.subJobCount + "）"}}</a>
+						<a ng-if="!job.jobResolver" class="detailbtn" ng-click="getJobDetail(job.jobId)">{{job.jobName}}</a>
+					</td>
+					<td ng-class="{runing:job.status=='运行中', stop:job.status=='已停止', failed:job.status=='异常'}">{{job.status}}</td>
+					<td>{{job.scheduleInfo}}</td>
+					<td>{{job.updateTime}}</td>
+					<td>
+						<a class="play-job fa" ng-class="(job.status == '已停止') ? 'fa-play' : 'fa-stop'" ng-click="startStopJob($event,job,outerIndex)"></a>
+						<a class="edit fa fa-pencil" title="编辑" ng-click="editJobs($event, job)"></a>
+						<a class="delete fa fa-trash-o" title="删除 " ng-click="deleteJobs($event, job.jobId, job.status)"></a>
+						<a ui-sref='app.runrecord({projectId:projectId,projectName:projectName,jobId:job.jobId})' class="fa fa-list-alt" title="查看运行记录" target="_blank"></a>
+					</td>
+				</tr>
+				<tr class="subjobs" ng-if="job.jobResolver" ng-show="jobs[outerIndex].isChildShow" ng-repeat="subjob in jobs[outerIndex].subJobs">
+					<td><a class="detailbtn" ng-class="{disabledjob : subjob.disabled == 1}" ng-click="getJobDetail(subjob.jobId)">{{subjob.jobName}}</a></td>
+					<td>{{subjob.status}}</td>
+					<td>{{subjob.scheduleInfo}}</td>
+					<td></td>
+					<td>
+						<a ui-sref='app.runrecord({projectId:projectId,projectName:projectName,jobId:subjob.jobId})' class="fa fa-list-alt" title="查看运行记录" target="_blank"></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<!-- 分页 控件-->
+		<my-pager pager="pager"></my-pager>
+		<!--无数据-->
+		<div class="nodata" ng-show="isPagination">
+			<img src="./statics/img/nojob.png" alt="无数据" />
+		</div>
+	</div>
+	<!--JOB详情页-->
+	<div class="shadow" ng-click="isDetailShow = false" ng-show="isDetailShow"></div>
+	<div class="detail-box" ng-show="isDetailShow">
+		<div class="detailtitle">
+			<span class="title">JOB详情</span>
+			<span class="close fa fa-close" title="关闭" ng-click="isDetailShow = false"></span>
+		</div>
+		<div class="detailcontent">
+			<div class="detailitem">
+				<div class="itemtitle"><span class="fa fa-tag"></span>运行类</div>
+				<div class="itemcontent">{{jobDetails.executeClass}}</div>
+			</div>
+			<div class="detailitem">
+				<div class="itemtitle"><span class="fa fa-code"></span>参数信息</div>
+				<div class="itemcontent2">{{jobDetails.jobParamJson}}</div>
+			</div>
+			<div class="detailitem">
+				<div class="itemtitle"><span class="fa fa-clock-o"></span>开始时间</div>
+				<div class="itemcontent">{{jobDetails.validityFrom}}</div>
+			</div>
+			<div class="detailitem">
+				<div class="itemtitle"><span class="fa fa-clock-o"></span>停止时间</div>
+				<div class="itemcontent">{{jobDetails.validityTo}}</div>
+			</div>
+			<div class="detailitem">
+				<div class="itemtitle"><span class="fa fa-calculator"></span>目前已运行次数</div>
+				<div class="itemcontent"><span style="color:#43DF90;font-size:12px;">{{jobDetails.runTimesSuccess}}</span> / {{jobDetails.runTimesTotal}}</div>
+			</div>
+		</div>
+	</div>
+	<!--删除库确认框-->
+	<div class="shadow" ng-show="isDelProShow"></div>
+	<div class="delproject" ng-show="isDelProShow">
+		<div class="deltext">确认删除该JOB?</div>
+		<div class="submit">
+			<button class="btn btnok" ng-click="confirmDel()">确认</button>
+			<button class="btn btnca" ng-click="isDelProShow = false">取消</button>
+		</div>
+	</div>
+</div>
